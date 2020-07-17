@@ -12,6 +12,5 @@
 UCLASS()
 class MUFFIN2D_API AMuffin2DGameModeBase : public AGameModeBase
 {
-	GENERATED_BODY()
-	
+    GENERATED_BODY()
 };

@@ -10,19 +10,18 @@
 UCLASS()
 class MUFFIN2D_API AGameCamera : public AActor
 {
-	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
-	AGameCamera();
+    GENERATED_BODY()
+
+public:
+    // Sets default values for this actor's properties
+    AGameCamera();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	UCameraComponent *CameraComponent;
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
+    UCameraComponent* CameraComponent;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
+public:
+    // Called every frame
+    virtual void Tick(float DeltaTime) override;
 };

@@ -2,33 +2,31 @@
 
 
 #include "MuffinCharacter.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AMuffinCharacter::AMuffinCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+    // Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+    PrimaryActorTick.bCanEverTick = true;
 }
 
 // Called when the game starts or when spawned
 void AMuffinCharacter::BeginPlay()
 {
-	Super::BeginPlay();
-	
+    Super::BeginPlay();
+    PlayerController = UGameplayStatics::GetPlayerController(this, 0);
+    PlayerController->SetViewTargetWithBlend(this, 0);
 }
 
 // Called every frame
 void AMuffinCharacter::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
-
+    Super::Tick(DeltaTime);
 }
 
 // Called to bind functionality to input
 void AMuffinCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+    Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
-
