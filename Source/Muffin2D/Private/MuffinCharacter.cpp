@@ -15,14 +15,25 @@ AMuffinCharacter::AMuffinCharacter()
 void AMuffinCharacter::BeginPlay()
 {
     Super::BeginPlay();
-    PlayerController = UGameplayStatics::GetPlayerController(this, 0);
-    PlayerController->SetViewTargetWithBlend(this, 0);
+    PlayerController = Cast<APlayerController>(GetController());
+    PlayerController->bShowMouseCursor = true;
+}
+
+void AMuffinCharacter::MoveTowardsCursor()
+{
+    FVector MouseLocation, MouseDirection;
+
+    PlayerController->DeprojectMousePositionToWorld(MouseLocation, MouseDirection);
+    float YDirection = FMath::Clamp(MouseLocation.Y - GetActorLocation().Y, -1.0f, 1.0f);
+    FVector MoveDirection = FVector(0,YDirection,0);
+    AddMovementInput(MoveDirection);
 }
 
 // Called every frame
 void AMuffinCharacter::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
+    MoveTowardsCursor();
 }
 
 // Called to bind functionality to input

@@ -18,7 +18,10 @@ public:
 protected:
     // Called when the game starts or when spawned
     virtual void BeginPlay() override;
+    
     APlayerController* PlayerController;
+
+    void MoveTowardsCursor();
 
 public:
     // Called every frame

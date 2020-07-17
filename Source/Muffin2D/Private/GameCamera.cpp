@@ -3,6 +3,8 @@
 
 #include "GameCamera.h"
 
+#include "Kismet/GameplayStatics.h"
+
 // Sets default values
 AGameCamera::AGameCamera()
 {
@@ -16,6 +18,11 @@ AGameCamera::AGameCamera()
 void AGameCamera::BeginPlay()
 {
     Super::BeginPlay();
+    PlayerController = UGameplayStatics::GetPlayerController(this, 0);
+    // 绑定摄像机
+    PlayerController->SetViewTargetWithBlend(this, 0);
+   
+    
 }
 
 // Called every frame
