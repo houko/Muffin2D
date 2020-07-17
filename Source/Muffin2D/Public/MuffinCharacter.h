@@ -21,7 +21,13 @@ protected:
     
     APlayerController* PlayerController;
 
+    FVector LaunchVelocity;
+
     void MoveTowardsCursor();
+
+    void LaunchOnAnyKeyPress();
+
+    void Launch();
 
 public:
     // Called every frame

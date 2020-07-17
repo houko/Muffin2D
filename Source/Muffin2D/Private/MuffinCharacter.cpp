@@ -9,6 +9,8 @@ AMuffinCharacter::AMuffinCharacter()
 {
     // Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
     PrimaryActorTick.bCanEverTick = true;
+
+    LaunchVelocity = FVector(0, 0, 1500);
 }
 
 // Called when the game starts or when spawned
@@ -25,8 +27,19 @@ void AMuffinCharacter::MoveTowardsCursor()
 
     PlayerController->DeprojectMousePositionToWorld(MouseLocation, MouseDirection);
     float YDirection = FMath::Clamp(MouseLocation.Y - GetActorLocation().Y, -1.0f, 1.0f);
-    FVector MoveDirection = FVector(0,YDirection,0);
+    FVector MoveDirection = FVector(0, YDirection, 0);
     AddMovementInput(MoveDirection);
+}
+
+
+void AMuffinCharacter::LaunchOnAnyKeyPress()
+{
+    Launch();
+}
+
+void AMuffinCharacter::Launch()
+{
+    LaunchCharacter(LaunchVelocity, false, true);
 }
 
 // Called every frame
@@ -40,4 +53,5 @@ void AMuffinCharacter::Tick(float DeltaTime)
 void AMuffinCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
     Super::SetupPlayerInputComponent(PlayerInputComponent);
+    PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AMuffinCharacter::LaunchOnAnyKeyPress);
 }
