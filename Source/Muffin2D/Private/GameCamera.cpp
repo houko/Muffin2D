@@ -3,6 +3,8 @@
 
 #include "GameCamera.h"
 
+
+#include "MuffinCharacter.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -21,12 +23,19 @@ void AGameCamera::BeginPlay()
     PlayerController = UGameplayStatics::GetPlayerController(this, 0);
     // 绑定摄像机
     PlayerController->SetViewTargetWithBlend(this, 0);
-   
-    
+    MuffinCharacter = Cast<AMuffinCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
+}
+
+void AGameCamera::MoveCameara()
+{
+    float Z = MuffinCharacter->GetActorLocation().Z;
+    FVector TowardLocation = FVector(GetActorLocation().X, GetActorLocation().Y, Z);
+    SetActorLocation(TowardLocation);
 }
 
 // Called every frame
 void AGameCamera::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
+    MoveCameara();
 }

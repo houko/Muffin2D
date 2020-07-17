@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "MuffinCharacter.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Actor.h"
 #include "GameCamera.generated.h"
@@ -17,13 +18,19 @@ public:
     AGameCamera();
 
 protected:
-    // Called when the game starts or when spawned
-    virtual void BeginPlay() override;
 
     UPROPERTY(VisibleAnywhere)
     UCameraComponent* CameraComponent;
 
     APlayerController* PlayerController;
+
+    AMuffinCharacter* MuffinCharacter;
+
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
+
+    void MoveCameara();
+
 public:
     // Called every frame
     virtual void Tick(float DeltaTime) override;
