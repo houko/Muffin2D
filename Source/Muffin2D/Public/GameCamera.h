@@ -29,7 +29,7 @@ protected:
     // Called when the game starts or when spawned
     virtual void BeginPlay() override;
 
-    void MoveCameara();
+    void MoveCamera();
 
 public:
     // Called every frame

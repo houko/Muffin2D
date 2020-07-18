@@ -26,16 +26,16 @@ void AGameCamera::BeginPlay()
     MuffinCharacter = Cast<AMuffinCharacter>(UGameplayStatics::GetPlayerPawn(this, 0));
 }
 
-void AGameCamera::MoveCameara()
+void AGameCamera::MoveCamera()
 {
     float Z = MuffinCharacter->GetActorLocation().Z;
-    FVector TowardLocation = FVector(GetActorLocation().X, GetActorLocation().Y, Z);
-    SetActorLocation(TowardLocation);
+    FVector TowardsLocation = FVector(GetActorLocation().X, GetActorLocation().Y, Z);
+    SetActorLocation(TowardsLocation);
 }
 
 // Called every frame
 void AGameCamera::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    MoveCameara();
+    MoveCamera();
 }
