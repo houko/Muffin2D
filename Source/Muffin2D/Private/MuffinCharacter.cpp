@@ -2,6 +2,8 @@
 
 
 #include "MuffinCharacter.h"
+
+#include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -19,6 +21,8 @@ void AMuffinCharacter::BeginPlay()
     Super::BeginPlay();
     PlayerController = Cast<APlayerController>(GetController());
     PlayerController->bShowMouseCursor = true;
+    UBoxComponent SpawnArea;
+    FVector origin = SpawnArea.Bounds.Origin;
 }
 
 void AMuffinCharacter::MoveTowardsCursor()
